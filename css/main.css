@@ -1,1 +1,55 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+body {
+  background-color: #191919;
+}
+
+* {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p, h1, h2 {
+  text-align: center;
+}
+
+img {
+  width: 25rem;
+  height: 25rem;
+  display: inline-block;
+}
+
+#main {
+  width: 75rem;
+  background-color: #1e1e1e;
+  height: 35rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5rem 1rem 1rem 1rem;
+}
+
+#holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+#info {
+  width: 45rem;
+  height: 28rem;
+  background-color: #232323;
+  padding: .5rem 1rem 1rem 1rem;
+}
+
+#abilities {
+  background-color: #1e1e1e;
+  width: 20rem;
+  height: 7rem;
+  display: inline-block;
+}
+
+#altinfo {
+  background-color: #1e1e1e;
+  width: 20rem;
+  height: 7rem;
+}
+/*# sourceMappingURL=main.css.map */
