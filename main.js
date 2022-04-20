@@ -211,3 +211,38 @@ let c3 = {
     ],
     "weight": 905
 }
+
+let AbilityFrame = document.getElementById("abilities")
+let AbilityTag = AbilityFrame.children[0]
+let AbilityName = AbilityTag.cloneNode()
+AbilityTag.remove()
+
+for(v of c.abilities){
+    let Ability = AbilityName.cloneNode()
+    Ability.innerHTML = v.name
+    AbilityFrame.appendChild(Ability)
+}
+
+let MainStats = document.getElementById("stats")
+let statFrame = document.getElementById("stat type")
+let statName = statFrame.cloneNode(true)
+statFrame.remove()
+
+for(t of c.stats){
+    let base = statName.cloneNode(true)
+    base.children[0].innerHTML = t.stat.name+": "+t.base_stat
+    base.children[1].innerHTML = "effort: "+t.effort
+    MainStats.appendChild(base)
+}
+
+let baseExp=document.getElementById('altinfo')
+baseExp.children[2].innerHTML = "Base XP: "+c.base_experience
+
+let height=document.getElementById('altinfo')
+height.children[0].innerHTML = "Height: "+c.height
+
+let weight=document.getElementById('altinfo')
+weight.children[1].innerHTML = "Weight: "+c.weight
+
+let order=document.getElementById('altinfo')
+order.children[3].innerHTML = "Order: "+c.order
