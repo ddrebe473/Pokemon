@@ -17,6 +17,19 @@ img {
   display: inline-block;
 }
 
+.arrow {
+  display: inline-block;
+  width: 49.8%;
+  height: 2rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+#name {
+  margin-top: .5rem;
+}
+
 #main {
   width: 75rem;
   background-color: #1e1e1e;
@@ -24,6 +37,8 @@ img {
   margin-left: auto;
   margin-right: auto;
   padding: .5rem 1rem 1rem 1rem;
+  transform-style: preserve-3d;
+  transition: transform .5s ease-in;
 }
 
 #holder {
@@ -36,8 +51,22 @@ img {
 #info {
   width: 45rem;
   height: 28rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 4rem;
+  row-gap: 1rem;
   background-color: #232323;
   padding: .5rem 1rem 1rem 1rem;
+}
+
+.heading {
+  width: 30%;
+  height: 2rem;
+  margin: 0 0 0 0;
+  flex-grow: 2;
+  font-size: 1.6rem;
 }
 
 #abilities {
@@ -51,5 +80,33 @@ img {
   background-color: #1e1e1e;
   width: 20rem;
   height: 7rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0rem;
+}
+
+#altinfo > p {
+  width: 50%;
+  margin: 0 0 0 0;
+  display: inline-block;
+}
+
+#stats {
+  background-color: #1e1e1e;
+  width: 35rem;
+  height: 12rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: .35rem;
+}
+
+.stat_type {
+  width: 32%;
+  height: 47%;
+  background-color: #232323;
 }
 /*# sourceMappingURL=main.css.map */
