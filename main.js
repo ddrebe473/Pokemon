@@ -214,27 +214,40 @@ let pokemon = {
     },
 }
 let pos = 0
+let EntriesLength = Object.keys(pokemon).length - 1
 
 let pogemoners = []
-let MainF = document.getElementById("main").cloneNode(true)
+let Main = document.getElementById("main")
+let MainF = Main.cloneNode(true)
+let Arrows = document.getElementsByClassName("arrow")
+let Arrow = Arrows[0]
+Main.remove()
+//document.getElementById("main").remove()
+
+function uppername(v) {
+    return v.substr(0, 1).toUpperCase() + v.substr(1, v.length)
+}
 
 function makecard() {
+    let PokemonChosen = pokemon[pos]
     let Main = MainF.cloneNode(true)
     let MainChildren = Main.children
-    MainChildren[0].innerHTML = pokemon[pos].name // name
+    MainChildren[0].innerHTML = uppername(PokemonChosen.name) // name
 
     let MainHolder = MainChildren[1]
-    let InfoFrame = MainHolder.children[0]
+    let InfoFrame = MainHolder.children[1]
     let InfoChildren = InfoFrame.children
+
+    MainHolder.children[0].src = "images/" + PokemonChosen.name + ".png"
 
     let AbilityFrame = InfoChildren[2]
     let AbilityTag = AbilityFrame.children[0]
-    let AbilityName = AbilityTag.cloneNode()
+    let AbilityName = AbilityTag.cloneNode(true)
     AbilityTag.remove()
 
-    for (v of c.abilities) {
-        let Ability = AbilityName.cloneNode()
-        Ability.innerHTML = v.name
+    for (v of PokemonChosen.abilities) {
+        let Ability = AbilityName.cloneNode(true)
+        Ability.innerHTML = uppername(v.name)
         AbilityFrame.appendChild(Ability)
     }
 
@@ -243,41 +256,68 @@ function makecard() {
     let statName = statFrame.cloneNode(true)
     statFrame.remove()
 
-    for (t of c.stats) {
+    for (t of PokemonChosen.stats) {
         let base = statName.cloneNode(true)
-        base.children[0].innerHTML = t.stat.name + ": " + t.base_stat
-        base.children[1].innerHTML = "effort: " + t.effort
+        base.children[0].innerHTML = uppername(t.stat.name) + ": " + t.base_stat
+        base.children[1].innerHTML = "Effort: " + t.effort
         MainStats.appendChild(base)
     }
 
     let AltInfo = InfoChildren[3]
     let AltInfoChildren = AltInfo.children
-    AltInfoChildren[2].innerHTML = "Base XP: " + c.base_experience
-    AltInfoChildren[0].innerHTML = "Height: " + c.height
-    AltInfoChildren[1].innerHTML = "Weight: " + c.weight
-    AltInfoChildren[3].innerHTML = "Order: " + c.order
+    AltInfoChildren[2].innerHTML = "Base XP: " + PokemonChosen.base_experience
+    AltInfoChildren[0].innerHTML = "Height: " + PokemonChosen.height
+    AltInfoChildren[1].innerHTML = "Weight: " + PokemonChosen.weight
+    AltInfoChildren[3].innerHTML = "Order: " + PokemonChosen.order
 
-    return Main
+    document.body.insertBefore(Main, Arrow)
+}
+
+let canuse = true
+let controlkeys = {
+    "ArrowRight": 1,
+    "ArrowLeft": -1,
+    ".": 1,
+    ",": -1,
+    ">": 1,
+    "<": -1,
 }
 
 function flippanel(key) {
-    if (key.key === "." || key.key === ",") {
-        console.log("lol")
-        let thecard = document.getElementById("main")
+    let dakey = controlkeys[key.key] !== undefined && controlkeys[key.key] || controlkeys[key] !== undefined && controlkeys[key] || undefined
+    if (dakey !== undefined && canuse === true) {
+        canuse = false
+        let thecard = document.getElementById("main") || document.getElementById("NOESCAPE")
         thecard.style.transform = `rotateY(90deg)`
-        pos += 1
-        if (pos > pokemon.length) {
-            console.log("lol")
+        pos += dakey
+        if (pos > EntriesLength) {
             pos = 0
-        }
+        } else if (pos < 0) { pos = EntriesLength }
+        console.log(pos, EntriesLength)
         setTimeout(() => {
-            console.log("there is a bomb in my car")
-            let NewCard = makecard(pokemon[pos].name)
             thecard.remove()
-            document.body.appendChild(NewCard)
+            makecard()
+            //let NewFrame = document.getElementById("main")
+            //NewFrame.style.transform = `rotateY(0deg)`
+            canuse = true
+            //document.body.appendChild(NewCard)
         }, 500);
     }
 }
 
 
 document.addEventListener("keydown", flippanel)
+for (v of Arrows) {
+    let Text = v.textContent
+    console.log(v.textContent)
+    v.addEventListener("mousedown", () => {
+        flippanel(Text)
+    })
+}
+
+
+
+
+
+
+
