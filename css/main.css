@@ -24,6 +24,7 @@ img {
   font-size: 2rem;
   margin-top: 1rem;
   margin-bottom: 0;
+  user-select: none;
 }
 
 #name {
@@ -39,6 +40,7 @@ img {
   padding: .5rem 1rem 1rem 1rem;
   transform-style: preserve-3d;
   transition: transform .5s ease-in;
+  transform: rotateY("90deg")
 }
 
 #holder {
@@ -108,5 +110,12 @@ img {
   width: 32%;
   height: 47%;
   background-color: #232323;
+}
+#NOESCAPE{
+  margin: auto;
+  padding-top: 15.7rem;
+  padding-bottom: 15.5rem;
+  transform-style: preserve-3d;
+  transition: transform .5s ease-in;
 }
 /*# sourceMappingURL=main.css.map */
